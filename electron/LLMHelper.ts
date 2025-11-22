@@ -137,7 +137,7 @@ export class LLMHelper {
 
   public async extractProblemFromImages(imagePaths: string[]) {
     try {
-      const prompt = `${this.systemPrompt}\n\nYou are a wingman. Please analyze these images and extract the following information in JSON format:\n{
+      const prompt = `${this.systemPrompt}\n\nPlease analyze these images and extract the following information in JSON format:\n{
   "problem_statement": "A clear statement of the problem or situation depicted in the images.",
   "context": "Relevant background or context from the images.",
   "suggested_responses": ["First possible answer or action", "Second possible answer or action", "..."],

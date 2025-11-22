@@ -1,24 +1,22 @@
-# Cluely
+# Kyro - AI Desktop Assistant
 
-[Cluely](https://cluely.com) - The invisible desktop assistant that provides real-time insights, answers, and support during meetings, interviews, presentations, and professional conversations.
-
-## Sponsored by Recall AI - API for desktop recording
-If you’re looking for a hosted desktop recording API, consider checking out [Recall.ai](https://www.recall.ai/product/desktop-recording-sdk?utm_source=github&utm_medium=sponsorship&utm_campaign=prat011-free-cluely), an API that records Zoom, Google Meet, Microsoft Teams, in-person meetings, and more.
+AI-powered desktop assistant with support for OpenAI, Google Gemini, and Ollama. Get real-time insights, answers, and support through an intuitive desktop interface.
 
 ## 🚀 Quick Start Guide
 
 ### Prerequisites
-- Make sure you have Node.js installed on your computer
+- Node.js installed on your computer
 - Git installed on your computer  
-- **Either** a Gemini API key (get it from [Google AI Studio](https://makersuite.google.com/app/apikey))
+- **Either** an OpenAI API key (get it from [OpenAI Platform](https://platform.openai.com/api-keys))
+- **Or** a Gemini API key (get it from [Google AI Studio](https://makersuite.google.com/app/apikey))
 - **Or** Ollama installed locally for private LLM usage (recommended for privacy)
 
 ### Installation Steps
 
 1. Clone the repository:
 ```bash
-git clone [repository-url]
-cd free-cluely
+git clone https://github.com/Rkamal21/kyro.git
+cd kyro
 ```
 
 2. Install dependencies:
@@ -34,9 +32,14 @@ npm install
 3. Set up environment variables:
    - Create a file named `.env` in the root folder
    
+   **For OpenAI (Cloud AI):**
+   ```env
+   OPENAI_API_KEY=your_openai_api_key_here
+   ```
+   
    **For Gemini (Cloud AI):**
    ```env
-   GEMINI_API_KEY=your_api_key_here
+   GEMINI_API_KEY=your_gemini_api_key_here
    ```
    
    **For Ollama (Local/Private AI):**
@@ -69,6 +72,30 @@ The built app will be in the `release` folder.
 
 ## 🤖 AI Provider Options
 
+### OpenAI (Recommended for Best Performance)
+**Pros:**
+- Latest GPT-4o model with vision capabilities
+- Fastest responses
+- Best accuracy for complex tasks
+- Audio transcription with Whisper API
+
+**Cons:**
+- Requires API key and internet
+- Data sent to OpenAI servers
+- Usage costs apply
+
+### Google Gemini
+**Pros:**
+- Latest AI technology
+- Fast responses
+- Good accuracy for complex tasks
+- Free tier available
+
+**Cons:**
+- Requires API key and internet
+- Data sent to Google servers
+- Usage limits on free tier
+
 ### Ollama (Recommended for Privacy)
 **Pros:**
 - 100% private - data never leaves your computer
@@ -81,22 +108,11 @@ The built app will be in the `release` folder.
 2. Pull a model: `ollama pull llama3.2`
 3. Set environment variables as shown above
 
-### Google Gemini
-**Pros:**
-- Latest AI technology
-- Fastest responses
-- Best accuracy for complex tasks
-
-**Cons:**
-- Requires API key and internet
-- Data sent to Google servers
-- Usage costs apply
-
 ### ⚠️ Important Notes
 
 1. **Closing the App**: 
    - Press `Cmd + Q` (Mac) or `Ctrl + Q` (Windows/Linux) to quit
-   - Or use Activity Monitor/Task Manager to close `Interview Coder`
+   - Or use Activity Monitor/Task Manager to close `Kyro AI Assistant`
    - The X button currently doesn't work (known issue)
 
 2. **If the app doesn't start**:
@@ -104,17 +120,20 @@ The built app will be in the `release` folder.
    - Try killing existing processes:
      ```bash
      # Find processes using port 5180
-     lsof -i :5180
+     lsof -i :5180  # macOS/Linux
+     netstat -ano | findstr :5180  # Windows
      # Kill them (replace [PID] with the process ID)
-     kill [PID]
+     kill [PID]  # macOS/Linux
+     taskkill /F /PID [PID]  # Windows
      ```
    - For Ollama users: Make sure Ollama is running (`ollama serve`)
 
 3. **Keyboard Shortcuts**:
    - `Cmd/Ctrl + B`: Toggle window visibility
    - `Cmd/Ctrl + H`: Take screenshot
-   - 'Cmd/Enter': Get solution
+   - `Cmd/Ctrl + Enter`: Get solution
    - `Cmd/Ctrl + Arrow Keys`: Move window
+   - `Cmd/Ctrl + Shift + Space`: Show/center window
 
 ## 🔧 Troubleshooting
 
@@ -152,7 +171,7 @@ If you see other errors:
 4. Try running with `npm start`
 
 ### Platform-Specific Notes
-- **Windows**: App now works on Windows 10/11
+- **Windows**: App works on Windows 10/11
 - **Ubuntu/Linux**: Tested on Ubuntu 20.04+ and most Linux distros  
 - **macOS**: Native support with proper window management
 
@@ -170,7 +189,7 @@ If you see other errors:
 
 ### **Audio Intelligence**
 - Process audio files and recordings
-- Real-time transcription and analysis
+- Real-time transcription using OpenAI Whisper API
 - Perfect for meeting notes and content review
 
 ### **Contextual Chat**
@@ -180,7 +199,7 @@ If you see other errors:
 
 ### **Privacy-First Design**
 - **Local AI Option**: Use Ollama for 100% private processing
-- **Cloud Option**: Google Gemini for maximum performance
+- **Cloud Options**: OpenAI or Gemini for maximum performance
 - Screenshots auto-deleted after processing
 - No data tracking or storage
 
@@ -215,20 +234,11 @@ If you see other errors:
 ✓ Algorithm and architecture guidance
 ```
 
-## Why Choose Free Cluely?
-
-| Feature | Free Cluely | Commercial Alternatives |
-|---------|-------------|------------------------|
-| **Cost** | 100% Free | $29-99/month |
-| **Privacy** | Local AI Option | Cloud-only |
-| **Open Source** | Full transparency | Closed source |
-| **Customization** | Fully customizable | Limited options |
-| **Data Control** | You own your data | Third-party servers |
-| **Offline Mode** | Yes (with Ollama) | No |
-
 ## Technical Details
 
 ### **AI Models Supported**
+- **OpenAI GPT-4o** - Latest OpenAI model with vision capabilities
+- **OpenAI Whisper** - Audio transcription
 - **Gemini 2.0 Flash** - Latest Google AI with vision capabilities
 - **Llama 3.2** - Meta's advanced local model via Ollama
 - **CodeLlama** - Specialized coding assistance
@@ -244,7 +254,7 @@ Optimal: 16GB+ RAM for local AI models
 
 ## 🤝 Contributing
 
-This project welcomes contributions! While I have limited time for active maintenance, I'll review and merge quality PRs.
+This project welcomes contributions!
 
 **Ways to contribute:**
 - 🐛 Bug fixes and stability improvements
@@ -253,15 +263,13 @@ This project welcomes contributions! While I have limited time for active mainte
 - 🌍 Translations and internationalization
 - 🎨 UI/UX enhancements
 
-For commercial integrations or custom development, reach out on [Twitter](https://x.com/prathitjoshi_)
-
 ## 📄 License
 
-ISC License - Free for personal and commercial use.
+MIT License - Free for personal and commercial use.
 
 ---
 
-**⭐ Star this repo if Free Cluely helps you succeed in meetings, interviews, or presentations!**
+**⭐ Star this repo if Kyro helps you succeed in your work!**
 
 ### 🏷️ Tags
-`ai-assistant` `meeting-notes` `interview-helper` `presentation-support` `ollama` `gemini-ai` `electron-app` `cross-platform` `privacy-focused` `open-source` `local-ai` `screenshot-analysis` `academic-helper` `sales-assistant` `coding-companion`
+`ai-assistant` `desktop-app` `electron` `openai` `gemini` `ollama` `cross-platform` `privacy-focused` `open-source` `local-ai` `screenshot-analysis` `audio-transcription` `coding-assistant`
